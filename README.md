@@ -4,6 +4,11 @@ React web application that allows users to search the Spotify library, create a 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Technologies used:
+
+- Sass
+- React bootstrap
+
 ## Available Scripts
 
 In the project directory, you can run:

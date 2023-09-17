@@ -1,19 +1,20 @@
 import React from "react";
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 
 const Track = ({ track, handleAddTrack, handleRemoveTrack, buttonMethod }) => {
     
     return (
-        <div className="result" key={track.id}>
-            <div className="result-info">
-                <h3>{track.title}</h3>
-                <p>{track.artist} | {track.album}</p>
-            </div>
-
-            <div className="result-actions">
-                {buttonMethod === 'add' ? <button className="add-button" onClick={() => handleAddTrack(track)}>+</button> : <button className="remove-button" onClick={() => handleRemoveTrack(track.id)}>-</button>
-                }
-            </div>
-        </div>
+        <Card className="result d-flex p-2 flex-row align-items-center mb-4" key={track.id}>
+            <Card.Body className="col">
+                <Card.Title as="h3" className="text-start pb-2 mb-3 border-bottom border-darkgreen text-darkgreen">{track.name}</Card.Title>
+                <Card.Subtitle className="text-start pb-1">Artist: {track.artist}</Card.Subtitle>
+                <Card.Subtitle className="text-start">Album: {track.album}</Card.Subtitle>
+            </Card.Body>
+            <Card.Link className="col-2">
+                {buttonMethod === 'add' ? <Button className="add_button" variant="darkgreen" onClick={() => handleAddTrack(track)}>+</Button> : <Button className="remove_button" variant="outline-darkgreen" onClick={() => handleRemoveTrack(track.id)}> - </Button>}
+            </Card.Link>
+        </Card>
     );
 }
 

@@ -1,0 +1,199 @@
+$theme-colors: (
+  'green': #40B2C3,
+  'darkgreen': #3A7799,
+  'yellow': #E4C556
+);
+
+@import '~bootstrap/scss/bootstrap';
+
+$breakpoint-medium: 768px;
+
+$color-transparent: rgba(255, 255, 255, 0.3);
+$color-black: #000;
+$color-grey: #6f6f6f;
+$color-darkgreen: #3A7799;
+
+$font-family-heading: Tahoma, sans-serif;
+$font-family-body: 'Poppins', sans-serif;
+$font-size-large: 35px;
+$font-size-medium: 22px;
+$font-size-regular: 18px;
+
+$background-image: url('/assets/vinyl_background_1.jpg');
+
+@mixin border-style($width, $color) {
+  border: $width solid $color;
+}
+
+// General styles
+
+body {
+  font-family: $font-family-body;
+  color: $color-black;
+  font-size: $font-size-regular;
+}
+
+// Headings
+
+h1 {
+  font-family: $font-family-heading;
+  font-size: $font-size-large;
+  font-weight: 700;
+  margin-top: 0;
+  padding: 20px 0;
+}
+
+h2 {
+  font-family: $font-family-heading;
+  font-weight: 700;
+}
+
+h3 {
+  font-family: $font-family-heading;
+  font-size: $font-size-medium;
+  font-weight: 600;
+}
+
+input {
+  font-family: $font-family-body;
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: border-style(2px, $color-grey);
+  font-size: 1.55rem;
+  color: #fff;
+}
+
+// Application container
+
+.App {
+  text-align: center;
+  background: $background-image no-repeat;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.8;
+  height: 100vh;
+}
+
+// Scrollbar styles
+
+.search-results::-webkit-scrollbar-track,
+.playlist::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #F5F5F5;
+}
+
+.search-results::-webkit-scrollbar,
+.playlist::-webkit-scrollbar {
+  width: 10px;
+  background-color: #F5F5F5;
+}
+
+.search-results::-webkit-scrollbar-thumb,
+.playlist::-webkit-scrollbar-thumb {
+  background-color: $color-darkgreen;
+  @include border-style(2px, $color-grey);
+}
+
+// Containers
+
+.column_container {
+  margin: 24px;
+}
+
+.search-results,
+.playlist {
+  min-height: 75vh;
+  max-height: 75vh;
+  overflow: auto;
+  @include border-style(2px, $color-black);
+  padding: 20px;
+
+  input {
+    border-bottom: 1px solid $color-darkgreen;
+  }
+}
+
+.search_form {
+  max-width: 1200px;
+  margin: 30px auto 20px auto;
+  padding: 20px;
+}
+
+// Login container
+
+.login_container {
+  max-width: 600px;
+  padding: 30px;
+  margin: 50px auto;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+// Logout button
+
+.logout_button {
+  position: absolute;
+  top: 25px;
+  right: 20px;
+  cursor: pointer;
+  color: $color-black;
+
+  span {
+    margin-left: 10px;
+  }
+
+  &:hover svg path {
+    fill: $color-black;
+    transition: fill 0.15s ease-in-out;
+  }
+}
+
+.remove_button, .add_button {
+  min-width: 40px;
+}
+
+// Responsive styles
+
+@media screen and (max-width: $breakpoint-medium) {
+  .login_container {
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    max-width: 100%;
+  }
+
+  .logout_button span {
+    display: none;
+  }
+
+  .column_container {
+    margin: 12px 24px;
+  }
+
+  .search-results,
+  .playlist {
+    min-height: 30vh;
+    max-height: 30vh;
+    overflow: auto;
+    border: none;
+    margin: 20px;
+  }
+
+  .search_form {
+    max-width: 1200px;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    background-color: $color-transparent;
+  }
+
+  @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+    .search_form {
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      background-color: $color-transparent;
+    }
+  }
+
+}
