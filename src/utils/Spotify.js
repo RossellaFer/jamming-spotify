@@ -57,6 +57,7 @@ const Spotify = {
 
             const jsonResponse = await response.json();
             const userId = jsonResponse.id;
+            return userId;
         }
         catch(error) {
             console.error("Error in getUser:", error);

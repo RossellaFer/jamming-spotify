@@ -15,6 +15,8 @@ function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [trackList, setTrackList] = useState([]);
   const [playlistName, setPlaylistName] = useState("New Playlist");
+  const [errors, setErrors] = useState([]);
+  const [success, setSuccess] = useState(false);
 
   const authentication_endpoint = Spotify_auth.generateEndpoint();
   const token = Spotify_auth.authorizeApp();
@@ -62,9 +64,20 @@ function App() {
     }
 
     const trackUris = trackList.map(track => track.uri);
-    await Spotify.savePlaylist(userId, trackUris, playlistName);
-    setTrackList([]);
-    setPlaylistName("New Playlist");
+    const playlistSaveResult = await Spotify.savePlaylist(userId, trackUris, playlistName);
+    if(playlistSaveResult) {
+      // set success to true only for 2 seconds
+      setSuccess(true);
+      setTimeout(() => {
+        setSuccess(false);
+        setPlaylistName("New Playlist");
+        setTrackList([]);
+        setSearchResults([]);
+      }, 2000);
+    } else {
+      setErrors(["Something went wrong. Please try again."]);
+      setSuccess(false);
+    }
   }
 
   // Function to log out
@@ -79,16 +92,13 @@ function App() {
         <h1>
           Ja<span className="text-yellow font-weight-bold">mmm</span>ing
         </h1>
+        {accessToken && (<Button className="logout_button" variant='outline-yellow' onClick={logout}><LogoutIcon/><span className="m-6">Logout</span></Button>)}
       </header>
-      <div className="App-body">
+      <main className="App-body">
       {!accessToken ? (
         <Login url={authentication_endpoint} />
       ) : (
         <>
-        <Button className="logout_button" variant='outline-yellow' onClick={logout}>
-        <LogoutIcon/>
-        <span className="m-6">Logout</span>
-        </Button>
         <SearchBar handleSearchSubmit={handleSearchSubmit} />
         <div className="container">
           <div className="row gx-5">
@@ -100,6 +110,8 @@ function App() {
             </div>
             <div className="column_container col bg-green p-0">
               <Playlist
+                success={success}
+                errors={errors}
                 trackList={trackList}
                 playlistName={playlistName}
                 handleRemoveTrack={handleRemoveTrack}
@@ -111,7 +123,7 @@ function App() {
         </div>
         </>
       )}      
-      </div>
+      </main>
     </div>
   );
 }
