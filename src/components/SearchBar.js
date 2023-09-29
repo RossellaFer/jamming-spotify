@@ -1,6 +1,5 @@
 import React from 'react';
 import { useState } from 'react';
-import { Row, Col } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
@@ -16,16 +15,15 @@ const SearchBar = ({handleSearchSubmit}) => {
   
   return (
     <Form className="search_form" onSubmit={onSubmitHandler}>
-      <Row className='align-items-center justify-content-center gap-3'>
-        <Col md="6" xs="12">
-          <Form.Control type="text" placeholder="Enter A Song, Album, or Artist" onChange={(event) => setSearchInput(event.target.value)} value={searchInput}/>
-        </Col>
-        <Col md="1" xs="12">         
-          <Button variant="darkgreen" type="submit">
+          <div className='search_form_inner'>
+            <div className='input_group'>
+              <Form.Label htmlFor="song">Search songs on Spotify</Form.Label>
+              <Form.Control id="song" type="text" placeholder="Enter A Song, Album, or Artist" onChange={(event) => setSearchInput(event.target.value)} value={searchInput}/>
+            </div>
+          <Button className="SearchButton" variant="darkgreen" type="submit">
             Search
           </Button>
-        </Col>
-      </Row>
+          </div>
     </Form>
   )
 };

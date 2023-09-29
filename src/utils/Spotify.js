@@ -27,8 +27,7 @@ const Spotify = {
                 name: track.name,
                 artist: track.artists[0].name,
                 album: track.album.name,
-                uri: track.uri,
-                image: track.album.images[2].url,
+                uri: track.uri
             }));
         } catch (error) {
             console.error("Error in search:", error);
@@ -56,8 +55,7 @@ const Spotify = {
             }
 
             const jsonResponse = await response.json();
-            const userId = jsonResponse.id;
-            return userId;
+            return jsonResponse.id;
         }
         catch(error) {
             console.error("Error in getUser:", error);

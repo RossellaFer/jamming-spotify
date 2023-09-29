@@ -6,7 +6,8 @@ $theme-colors: (
 
 @import '~bootstrap/scss/bootstrap';
 
-$breakpoint-medium: 768px;
+$breakpoint-medium: 767px;
+$breakpoint-large: 768px;
 
 $color-transparent: rgba(255, 255, 255, 0.3);
 $color-black: #000;
@@ -153,7 +154,52 @@ input {
   min-width: 40px;
 }
 
+.search_form {
+  max-width: 1300px;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  background-color: $color-transparent;
+}
+
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+  .search_form {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background-color: $color-transparent;
+  }
+}
+
 // Responsive styles
+@media screen and (min-width: $breakpoint-large) {
+
+  .search_form {
+    padding-top: 40px;
+    margin: 44px auto 20px auto;
+  }
+
+  .search_form_inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .input_group {
+    position: relative;
+    margin-right: 20px;
+  }
+  
+  .input_group label {
+    position: absolute;
+    top: -30px;
+    left: 0;
+    font-weight: 700;
+  }
+  
+  .input_group input {
+    width: 100%;
+    min-width: 400px;
+  }
+}
 
 @media screen and (max-width: $breakpoint-medium) {
   .login_container {
@@ -172,6 +218,10 @@ input {
     margin: 12px 24px;
   }
 
+  .input_group {
+    margin-bottom: 15px;
+  }
+
   .search-results,
   .playlist {
     min-height: 30vh;
@@ -180,20 +230,4 @@ input {
     border: none;
     margin: 20px;
   }
-
-  .search_form {
-    max-width: 1200px;
-    margin-left: 1rem;
-    margin-right: 1rem;
-    background-color: $color-transparent;
-  }
-
-  @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
-    .search_form {
-      -webkit-backdrop-filter: blur(10px);
-      backdrop-filter: blur(10px);
-      background-color: $color-transparent;
-    }
-  }
-
 }
