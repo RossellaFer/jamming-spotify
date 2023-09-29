@@ -8,6 +8,7 @@ Technologies used:
 
 - Sass
 - React bootstrap
+- Spotify API
 
 ## Available Scripts
 

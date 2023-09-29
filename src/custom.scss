@@ -161,6 +161,21 @@ input {
   background-color: $color-transparent;
 }
 
+.track-preview {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  font-size: 16px;
+
+  span {
+    margin-right: 10px;
+  }
+
+  audio {
+    max-height: 40px;
+  }
+}
+
 @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
   .search_form {
     -webkit-backdrop-filter: blur(10px);
@@ -224,10 +239,14 @@ input {
 
   .search-results,
   .playlist {
-    min-height: 30vh;
+    min-height: 25vh;
     max-height: 30vh;
     overflow: auto;
     border: none;
     margin: 20px;
+  }
+
+  .track-preview {
+    display: none;
   }
 }

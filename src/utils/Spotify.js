@@ -27,6 +27,7 @@ const Spotify = {
                 name: track.name,
                 artist: track.artists[0].name,
                 album: track.album.name,
+                preview_url: track.preview_url,
                 uri: track.uri
             }));
         } catch (error) {
